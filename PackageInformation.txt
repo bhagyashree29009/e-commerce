@@ -1,0 +1,77 @@
+1st of all created Mern folder, then in cmd = code . =>open vs code
+then creted 2 folder fronted and backend.
+in root directry => write command => npm init --- this will create package,json file .
+few asked qsn -- project name == ecommerse.
+                 entry point == backend/server.json
+
+
+then install == npm i express mongoose dotenv
+
+then we create a config.env file under config folder inside backend
+then we import the file in server.js file, so that we can define any variable and 
+use that variable in the server.js file.
+then we install nodemon => npm i nodemon
+
+so we define a script in package.json file 
+                  "start": "node backend/server.js", //it will start server when we write start
+                  "dev": "nodemon backend/server.js" // in devlopment mode we will use nodemon, but for production mode 
+
+
+then we connect the database .and successfully runs the server
+
+Now we are making all the products API , 
+we make the Product route/Controll for all the products, get , post, put, delete methods. also cheked all the api is working perfectly.
+
+
+2nd Chapter--------------------------------------------
+ ->Backend Error Handling ::
+  1st we created a utils folder in backend and there created a errorhandler file and write the methods.
+  we've to create middleware to use this errorhandler file, so created a middleware folder in backend.
+
+
+  okay to handle the async errors we created another file in middleware.
+
+  we have define several error handling method--catchAsyncErrorHandling, 
+                                                handle unhandled promise rejection// in termical when we see ParserError
+                                                handling Uncaught error // means in terminal , we see reference error = undefined.
+                                                Handle invalid MongoDB ObjectId error (CastError) //in wrong product route, we see invalid object id.
+
+
+
+   3rd chapter -----------------------------------***********************************-----------------------------------------------
+   SEARCH FILTER PAGINATION
+   Definition -- after error handling , we will now do some feature in our website , like searching, rating a/c to search,prices details a/c to sorting, means filtering out.
+
+   for that purpose we've to make one folder =  utils / apifeatures.js
+   and we write the logic for search(), filter() based on rating & price, PAGINATION by limimg 5 products per page.
+   also use limit, skip method.
+
+
+   4th Chapter------------------------------------***********************************-----------------------------------------------
+   BACKEND USER PASSWORD  &  AUTHENTICATION
+   
+   1. have installed all the package for jwt, body parser, validation, bcrypt
+   2. created modal/userModel page and update the file.
+   3. created controller/userController file and update the code.
+   4. creted router/userRouter file and update it with register route.
+   5. connect this userRouter with app.js
+   6. by registering user we are able to see the p/w, so bcrypt it by enabling.
+   7. jwt implementation on userModel and use it in userController == for jwt we need product id route.
+   8. make user login, test completed.
+   9. instead of writting const token = getJwtToken again and again in Login & Registration Controll,
+      so we create a file "jwtToken.js" in Utils.
+      (basically for creating and storing cookie in browser.)
+  10. update COOKIE_EXPIRE in config
+  11. for AUTHENTICATION , creted auth.js in middleware. 
+  13. to check AUTHENTICATION is working, have to logOut 1st, so write logout user function in userController.
+  14. define user id.
+  15.  writting function for reseting the PASSWORD.
+  16. setting route for forget PASSWORD and test it, via smtp, google
+  17. writting function for reset password / make routes / test it.
+  18.
+
+
+
+
+
+
