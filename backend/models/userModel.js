@@ -69,7 +69,7 @@ userSchema.methods.getResetPasswordToken = function () {
   const resetToken = crypto.randomBytes(20).toString("hex");
 
   // Hashing and adding resetPasswordToken  to userSchema
-  this.resetPasswordExpire = crypto
+  this.resetPasswordToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
