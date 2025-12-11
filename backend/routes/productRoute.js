@@ -14,14 +14,17 @@ const router = express.Router();
 
 router.route("/products").get(getAllProducts); //used get method to get all the product list
 router
-  .route("/product/new")
+  .route("/admin/product/new")
   .post(isAuthenticatedUser, authorizeRoles("admin"), createProduct); //used post method to create a new product.
 
 router
-  .route("/product/:id")
+  .route("/admin/product/:id")
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateProduct)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProduct)
-  .get(getProductDetails); //make route for update any product.
+  
+
+  router.route("/product/:id").get(getProductDetails);
+  //make route for update any product.
 
 //route for getting the product details
 

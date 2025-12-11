@@ -37,7 +37,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("Invalid email or password", 401));
   }
 
-  const isPasswordMatched = user.comparePassword(password);
+  const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
     return next(new ErrorHandler("Invalid email or password", 401));
@@ -64,7 +64,7 @@ exports.forgetPassword = catchAsyncError(async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    return next(new ErrorHandler("User not found", 404)); 
+    return next(new ErrorHandler("User not found", 404));
   }
 
   // Get ResetPassword Token
@@ -132,3 +132,60 @@ exports.resetPassword = catchAsyncError(async (req, res, next) => {
 
   sendToken(user, 200, res);
 });
+
+// Get User Detail
+exports.getUserDetails = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Update User Password
+exports.updatePassword = catchAsyncError(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Old password is incorrect", 400));
+  }
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Password does not match", 400));
+  }
+  user.password = req.body.newPassword;
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+
+// Update User Profile
+exports.updateProfile = catchAsyncError(async (req, res, next) =>{
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  // We will add cloudinary later
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    userFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+// Get all users(Admin)
+exports.getAllUser = catchAsyncError(async (req, res, next) =>{
+  const user = await User.find();
+
+  res.status(200)
+
+})
+
+//3:40:00

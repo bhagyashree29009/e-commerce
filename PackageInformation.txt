@@ -65,10 +65,21 @@ we make the Product route/Controll for all the products, get , post, put, delete
   11. for AUTHENTICATION , creted auth.js in middleware. 
   13. to check AUTHENTICATION is working, have to logOut 1st, so write logout user function in userController.
   14. define user id.
-  15.  writting function for reseting the PASSWORD.
+  15. writting function for reseting the PASSWORD.
   16. setting route for forget PASSWORD and test it, via smtp, google
   17. writting function for reset password / make routes / test it.
-  18.
+  18. tested all reset pawword, login, logout is working route
+  19. tested if its taking duplicate email-id --- so makes a good status message for it in error.js file.
+  20. for wrong JWT & JWT expire , made status message.
+
+
+  5th Chapter---------------------------------------------------
+   BACKEND USER ROUTES APIs-----------------------
+   --------------------------
+1. make the function get user details in userController.js file and update the route /me in userRouter
+2. make "update User Password" in userController.js  and make route /password/update
+3. make funtion for "update User Profile" in userController and make route.
+4. Now, we will make admin routes -- 
 
 
 
