@@ -79,7 +79,8 @@ we make the Product route/Controll for all the products, get , post, put, delete
 1. make the function get user details in userController.js file and update the route /me in userRouter
 2. make "update User Password" in userController.js  and make route /password/update
 3. make funtion for "update User Profile" in userController and make route.
-4. Now, we will make admin routes -- 
+4. Now, we will make admin routes -- to view users list and a single user, make route for it
+5. made function for update user role & delete user, 
 
 
 
