@@ -101,15 +101,34 @@ exports.createProductReview = catchAsyncError(async (req, res, next) => {
 
   const product = await Product.findById(productId);
 
+  if (!product) {
+    return next(new ErrorHandler("Product not found", 404));
+  }
+
   const isReviewed = product.reviews.find(
-    (rev) => rev.user.toString() === req.user._id.toString()
+    (rev) => rev.user && rev.user.toString() === req.user._id.toString()
   );
   if (isReviewed) {
-    product.reviews.forEach((rev) =>{
-      if (rev.user.toString() === req.user._id.toString())
-      (rev.rating = rating), (rev.comment = comment);
+    product.reviews.forEach((rev) => {
+      if (rev.user && rev.user.toString() === req.user._id.toString())
+        (rev.rating = rating), (rev.comment = comment);
     });
   } else {
     product.reviews.push(review);
+    product.numOfReviews = product.reviews.length;
   }
+
+  let avg = 0;
+  //suppose all ratings = 4, 5, 5, 2 = 16/4 = 4
+
+  product.reviews.forEach((rev) => {
+    avg += rev.rating;
+  });
+  product.ratings = avg / product.reviews.length;
+
+  await product.save({ validateBeforeSave: false });
+
+  res.status(200).json({
+    success: true,
+  });
 });
