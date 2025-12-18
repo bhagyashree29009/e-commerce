@@ -81,7 +81,15 @@ we make the Product route/Controll for all the products, get , post, put, delete
 3. make funtion for "update User Profile" in userController and make route.
 4. Now, we will make admin routes -- to view users list and a single user, make route for it
 5. made function for update user role & delete user, and make route for it.
-6. 
+6. made function for to check reviews, delete review, add route .
+
+
+6th chapter--------------------------------------------------------------
+MAKING ORDER APIs-------------------
+
+1. create orderModel file in modals folder and write the function for orderSchema.
+2. create orderController file in controller, define the details.
+3. create orderRoute file in routes . defining routes.
 
 
 
