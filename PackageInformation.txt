@@ -89,7 +89,9 @@ MAKING ORDER APIs-------------------
 
 1. create orderModel file in modals folder and write the function for orderSchema.
 2. create orderController file in controller, define the details.
-3. create orderRoute file in routes . defining routes.
+3. create orderRoute file in routes . defining routes of order new . 
+   Also import routes in app.js file of order  &   use app.use in order route.
+4. 
 
 
 
