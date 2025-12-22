@@ -3,10 +3,18 @@ const express = require("express");
 const app = express();
 
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 const errorMiddleware = require("./middleware/error");
 
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(
+  cors({
+    origin: "http://localhost:4000",
+    credentials: true,
+  })
+);
 
 //route imports
 
